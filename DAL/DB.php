@@ -24,7 +24,10 @@ class DB {
     }
 
     function displayAllBooks() {
-        $query = "SELECT * FROM books";
+        $query = "SELECT b.bookid, b.title, a.name, b.pub_year, b.available 
+                  FROM books b, authors a 
+                  WHERE a.authorid = b.authorid
+                  ORDER BY b.bookid";
         $result = $this->conn->query($query);
 
         if ($result->num_rows > 0) {
@@ -32,7 +35,8 @@ class DB {
             echo "<tr><th>S.N</th><th>Book title</th><th>Author name</th><th>Published year</th><th>Available</th>";
 
             while ($row = $result->fetch_object()) {
-                echo "<tr><td>$row->bookid</td><td>$row->title</td><td>$row->ISBN</td><td>$row->pub_year</td><td>$row->available</td></tr>";
+                echo "<tr><td>$row->bookid</td><td>$row->title</td><td>$row->name</td>
+                      <td>$row->pub_year</td><td>$row->available</td></tr>";
             }
             echo "</table>";
         } else {
