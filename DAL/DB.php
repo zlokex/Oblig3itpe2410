@@ -23,6 +23,39 @@ class DB {
         }
     }
 
+    function displayBooks($filter) {
+        // Prevent injections:
+        $filter = $this->conn->real_escape_string($filter);
+        // Build query:
+        $query = "SELECT b.bookid, b.title, a.name, b.pub_year, b.available 
+                  FROM books b, authors a 
+                  WHERE (a.authorid = b.authorid)
+                  AND (b.bookid LIKE '%$filter%'
+                  OR b.title LIKE '%$filter%'
+                  OR b.ISBN LIKE '%$filter%'
+                  OR b.pub_year LIKE '%$filter%'
+                  OR b.available LIKE '%$filter%'
+                  OR a.name LIKE '%$filter%')
+                  ORDER BY b.bookid";
+        $result = $this->conn->query($query);
+
+        if ($result->num_rows > 0) {
+            $output= "<table class='booksTable'>";
+            $output.= "<tr><th>Select</th><th>S.N</th><th>Book title</th><th>Author name</th><th>Published year</th><th>Available</th></tr>";
+
+            while ($row = $result->fetch_object()) {
+                $output.= "<tr><td><input type='checkbox' name='bookcbs[]' value='$row->bookid'></td>
+                      <td>$row->bookid</td><td>$row->title</td><td>$row->name</td>
+                      <td>$row->pub_year</td><td>$row->available</td></tr>";
+            }
+            $output.= "</table>";
+            return $output;
+        } else {
+            $output= "No results for library books";
+            return $output;
+        }
+    }
+
     function displayAllBooks() {
         $query = "SELECT b.bookid, b.title, a.name, b.pub_year, b.available 
                   FROM books b, authors a 
@@ -31,17 +64,19 @@ class DB {
         $result = $this->conn->query($query);
 
         if ($result->num_rows > 0) {
-            echo "<table id='booksTable'>";
-            echo "<tr><th>Select</th><th>S.N</th><th>Book title</th><th>Author name</th><th>Published year</th><th>Available</th></tr>";
+            $output= "<table class='booksTable'>";
+            $output.= "<tr><th>Select</th><th>S.N</th><th>Book title</th><th>Author name</th><th>Published year</th><th>Available</th></tr>";
 
             while ($row = $result->fetch_object()) {
-                echo "<tr><td><input type='checkbox' name='bookcbs[]' value='$row->bookid'></td>
+                $output.= "<tr><td><input type='checkbox' name='bookcbs[]' value='$row->bookid'></td>
                       <td>$row->bookid</td><td>$row->title</td><td>$row->name</td>
                       <td>$row->pub_year</td><td>$row->available</td></tr>";
             }
-            echo "</table>";
+            $output.= "</table>";
+            return $output;
         } else {
-            echo "No results for library books";
+            $output= "No results for library books";
+            return $output;
         }
     }
 

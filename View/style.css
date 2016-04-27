@@ -1,8 +1,19 @@
 body {
-    margin: 2em;
+    margin: 0;
     padding: 0;
     background: white; /*#ccc */
 }
+
+.main-wrapper {
+    width: 690px;
+    margin:0 auto;
+}
+
+.main-wrapper h1 {
+    text-align: center;
+}
+
+
 
 /* Naviagation bar */
 .nav ul {
@@ -156,21 +167,22 @@ th, td {
 /* Search Wrapper */
 
 .search-wrapper {
-    margin-bottom: 1px;
+    float: right;
+    margin-bottom: 2px;
 }
 
 .search-wrapper form {
-    width: 500px;
-    margin: 50px auto;
 }
 
 .search-wrapper input[type="text"] {
+    width: 250px;
     padding:8px 15px;
     background-color:#f4f7f8;
     border:1px solid #cccccc;
 }
 
-.search-wrapper input[type="button"] {
+.search-wrapper input[type="submit"] {
+    width: 100px;
     position:relative;
     padding:6px 15px;
     left:-8px;
@@ -194,4 +206,17 @@ div#header-img {
 div#header-img img{
     width: 100%;
     margin-top: -200px;
+}
+
+.booksTable {
+
+}
+
+#deleteButton {
+    position:relative;
+    padding:6px 15px;
+    margin-top: 5px;
+    border:2px solid darkblue;
+    background-color:darkblue;
+    color:#fafafa;
 }

@@ -9,10 +9,11 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+<!--
 <div id =header-img>
     <img src="http://thumbs.dreamstime.com/z/e-book-library-concept-laptop-computer-books-57096626.jpg"/>
 </div>
+!-->
 <div class="nav">
     <ul>
         <li>
