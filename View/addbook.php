@@ -52,7 +52,7 @@ function test_input($data) {
 
 <div class="form-addbook">
     <h1>Add a new book to the library</h1>
-    <form name = "form1" action="<?php echo $_SERVER['PHP_SELF'];?>" method="post" enctype="multipart/form-data">
+    <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post" enctype="multipart/form-data">
         <label for="title">Book title:</label>
         <span class="error">* <?php echo $titleErr;?></span>
         <input type="text" name="title" id="title" placeholder="e.g. The Return of The King" value="<?php echo $title;?>"/>

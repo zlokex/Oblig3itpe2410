@@ -1,5 +1,5 @@
 body {
-    margin: 0;
+    margin: 2em;
     padding: 0;
     background: white; /*#ccc */
 }
@@ -138,7 +138,7 @@ th, td {
     background-color: midnightblue;
 }
 
-.form-addbook label{
+.form-addbook label {
     display: block;
     float: left;
     height: 14px;
@@ -146,35 +146,52 @@ th, td {
     color: #B9B9B9;
     font-size: 14px;
     overflow: hidden;
+}
 
 .error {
-    color: red;
+    font-size: 14px;
+    color: orangered;
 }
 
+/* Search Wrapper */
 
-/*
-form div + div {
-    margin-top: 1em;
+.search-wrapper {
+    margin-bottom: 1px;
 }
 
-label {
-    display: inline-block;
-    width: 7em;
-    text-align: right;
+.search-wrapper form {
+    width: 500px;
+    margin: 50px auto;
 }
 
-.input-text input {
-    font: 1em sans-serif;
-
-    width: 200px;
-    border: 1px solid #999;
+.search-wrapper input[type="text"] {
+    padding:8px 15px;
+    background-color:#f4f7f8;
+    border:1px solid #cccccc;
 }
 
-.input-radio input {
-
+.search-wrapper input[type="button"] {
+    position:relative;
+    padding:6px 15px;
+    left:-8px;
+    border:2px solid darkblue;
+    background-color:darkblue;
+    color:#fafafa;
 }
 
-.submit-form {
-    margin-left: 7em;
+.search-wrapper input[type="button"]:hover {
+    background-color:#fafafa;
+    color:darkblue;
 }
-*/
+
+/* Header image */
+div#header-img {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+}
+
+div#header-img img{
+    width: 100%;
+    margin-top: -200px;
+}

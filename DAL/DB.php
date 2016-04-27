@@ -32,10 +32,11 @@ class DB {
 
         if ($result->num_rows > 0) {
             echo "<table id='booksTable'>";
-            echo "<tr><th>S.N</th><th>Book title</th><th>Author name</th><th>Published year</th><th>Available</th>";
+            echo "<tr><th>Select</th><th>S.N</th><th>Book title</th><th>Author name</th><th>Published year</th><th>Available</th></tr>";
 
             while ($row = $result->fetch_object()) {
-                echo "<tr><td>$row->bookid</td><td>$row->title</td><td>$row->name</td>
+                echo "<tr><td><input type='checkbox' name='bookcbs[]' value='$row->bookid'></td>
+                      <td>$row->bookid</td><td>$row->title</td><td>$row->name</td>
                       <td>$row->pub_year</td><td>$row->available</td></tr>";
             }
             echo "</table>";
@@ -44,12 +45,26 @@ class DB {
         }
     }
 
+    function deleteBooks($books) {
+        $query = "DELETE FROM books WHERE bookid IN ($books[0]";
+        for ($i = 1; $i < count($books); $i++) {
+            $query.=",$books[$i]";
+        }
+        $query.=")";
+        $result = $this->conn->query($query);
+        if (mysqli_affected_rows($this->conn) > 0) {
+            return "Book(s) have been succesfully deleted.";
+        } else {
+            return "Ooops. We had problems handling your delete request. Please try again later or contact us through our support page.";
+        }
+    }
+
     function addAuthor($name) {
         $name = $this->conn->real_escape_string($name);
         $query = "INSERT INTO authors(name) VALUES ('$name')";
         $result = $this->conn->query($query);
         if (mysqli_affected_rows($this->conn) > 0) {
-            return mysqli_insert_id($this->conn);
+            return mysqli_insert_id($this->conn); // Return last inserted id
         } else {
             return -1;
         }

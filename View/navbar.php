@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+<div id =header-img>
+    <img src="http://thumbs.dreamstime.com/z/e-book-library-concept-laptop-computer-books-57096626.jpg"/>
+</div>
 <div class="nav">
     <ul>
         <li>
@@ -17,9 +21,6 @@
         <li>
             <a href="/Oblig3itpe2410/View/addbook.php">Add book</a>
         </li>
-        <li>
-            <a href="/Oblig3itpe2410/View/removebook.php">Remove book</a>
-        </li>
-        <li style="float:right"><a href="/Oblig3itpe2410/API/loggUt.php">Log out</a></li>
+        <li style="float:right"><a href="/Oblig3itpe2410/API/loggUt.php">Sign out</a></li>
     </ul>
 </div>
