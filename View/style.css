@@ -95,7 +95,7 @@ th, td {
 }
 
 .form-addbook h1 {
-    background-color: darkblue;
+    background-color: #444444;
     padding: 20px 0;
     font-size: 140%;
     font-weight: 300;
@@ -152,7 +152,7 @@ th, td {
     width: 100%;
     margin-top: 1em;
     padding: 3%;
-    background: darkblue;
+    background-color: #444444;
     border-bottom: 0;
     border-top-style: none;
     border-right-style: none;
@@ -161,7 +161,7 @@ th, td {
 }
 .form-addbook input[type="submit"]:hover,
 .form-addbook input[type="button"]:hover{
-    background-color: midnightblue;
+    background-color: #555555;
 }
 
 .form-addbook label {
@@ -201,14 +201,14 @@ th, td {
     position:relative;
     padding:6px 15px;
     left:-8px;
-    border:2px solid darkblue;
-    background-color:darkblue;
+    border:2px solid #444444;
+    background-color:#444444;
     color:#fafafa;
 }
 
 .search-wrapper input[type="button"]:hover {
-    background-color:#fafafa;
-    color:darkblue;
+    background-color:#555555;
+    color:white;
 }
 
 /* Header image */
@@ -229,9 +229,9 @@ div#header-img img{
     position:relative;
     padding:6px 15px;
     margin-top: 5px;
-    border:2px solid darkblue;
-    background-color:darkblue;
-    color:#fafafa;
+    border:2px solid #444444;
+    background-color:#444444;
+    color:white;
 }
 
 .spanFormat {
@@ -243,4 +243,17 @@ div#header-img img{
 input[type="submit"]:hover,
 input[type="button"]:hover {
     cursor: pointer;
+    background-color:#555555;
+}
+
+.header {
+    width: 100%;
+    background-color: black;
+}
+
+.header img {
+    height: 150px;
+    margin-top: 10px;
+    margin-left:10px;
+    margin-bottom:10px;
 }
