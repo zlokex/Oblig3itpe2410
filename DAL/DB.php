@@ -24,7 +24,10 @@ class DB {
     }
 
     function displayAllBooks() {
-        $query = "SELECT * FROM books";
+        $query = "SELECT b.bookid, b.title, a.name, b.pub_year, b.available 
+                  FROM books b, authors a 
+                  WHERE a.authorid = b.authorid
+                  ORDER BY b.bookid";
         $result = $this->conn->query($query);
 
         if ($result->num_rows > 0) {
@@ -32,11 +35,62 @@ class DB {
             echo "<tr><th>S.N</th><th>Book title</th><th>Author name</th><th>Published year</th><th>Available</th>";
 
             while ($row = $result->fetch_object()) {
-                echo "<tr><td>$row->bookid</td><td>$row->title</td><td>$row->ISBN</td><td>$row->pub_year</td><td>$row->available</td></tr>";
+                echo "<tr><td>$row->bookid</td><td>$row->title</td><td>$row->name</td>
+                      <td>$row->pub_year</td><td>$row->available</td></tr>";
             }
             echo "</table>";
         } else {
             echo "No results for library books";
+        }
+    }
+
+    function addAuthor($name) {
+        $name = $this->conn->real_escape_string($name);
+        $query = "INSERT INTO authors(name) VALUES ('$name')";
+        $result = $this->conn->query($query);
+        if (mysqli_affected_rows($this->conn) > 0) {
+            return mysqli_insert_id($this->conn);
+        } else {
+            return -1;
+        }
+    }
+
+    function getAuthorId($name) {
+        $name = $this->conn->real_escape_string($name);
+        $query = "SELECT authorid FROM authors
+                  WHERE name = '$name'";
+        $result = $this->conn->query($query);
+        if ($result->num_rows > 0) {
+            return $result->fetch_object()->authorid;
+        } else {
+            return -1;
+        }
+    }
+
+    function addBook($title, $author, $ISBN, $pub_year, $available) {
+        $title = $this->conn->real_escape_string($title);
+        //$author = $this->conn->real_escape_string($author);
+        $ISBN = $this->conn->real_escape_string($ISBN);
+        $pub_year = $this->conn->real_escape_string($pub_year);
+        $available = $this->conn->real_escape_string($available);
+
+        $authorid = $this->getAuthorId($author);
+        echo "<br>";
+        echo $authorid;
+        echo "<br>";
+        if ($authorid == -1) { // Author does not allready exist
+            // Add author and get the new authorid.
+            $authorid = $this->addAuthor($author);
+        }
+        $query = "INSERT INTO books (authorid, title, ISBN, pub_year, available) VALUES
+        ($authorid, '$title', $ISBN, $pub_year, '$available')";
+
+        $result = $this->conn->query($query);
+        if (mysqli_affected_rows($this->conn) > 0) {
+            return "Success. '$title' has now been added to the library database.";
+        } else {
+            return "Oops. We were not able to add '$title' to the library database. Please check to see if all fields
+            are entered correctly. If the problem persists try again later or contact us via our support page.";
         }
     }
 }
