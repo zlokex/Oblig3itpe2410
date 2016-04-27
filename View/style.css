@@ -7,6 +7,7 @@ body {
 .main-wrapper {
     width: 690px;
     margin:0 auto;
+
 }
 
 .main-wrapper h1 {
@@ -56,6 +57,7 @@ table {
     border-collapse: collapse;
     border: 1px solid black;
     overflow-x:auto;
+    background-color: #f4f7f8;
 }
 
 td {
@@ -213,6 +215,7 @@ div#header-img img{
 }
 
 #deleteButton {
+    width: 15em;
     position:relative;
     padding:6px 15px;
     margin-top: 5px;
