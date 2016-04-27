@@ -61,7 +61,7 @@ table {
 }
 
 tbody tr:nth-child(2n) {
-    background-color: lightsteelblue;
+    background-color: silver;
 }
 
 tbody tr:hover {
