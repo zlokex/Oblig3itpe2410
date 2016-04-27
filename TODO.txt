@@ -1,0 +1,8 @@
+TODO list:
+
+Regex og validering av alle feltene ved registrering av ny bok.
+
+Få Reset DB knappen til å oppdaterere siden, framfor å åpne ny tab.
+
+Via JavaScript(uten JQuery) utvid books tabellen til å ha scrollbar eller pages når antall bøker/rader når en bestemt
+limit, f.eks 15 rader.
