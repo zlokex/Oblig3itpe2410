@@ -43,4 +43,53 @@ class DB {
             echo "No results for library books";
         }
     }
+
+    function addAuthor($name) {
+        $name = $this->conn->real_escape_string($name);
+        $query = "INSERT INTO authors(name) VALUES
+        ('$name')";
+        $result = $this->conn->query($query);
+        if ($result->affected_rows > 0) {
+            return mysqli_insert_id($this->conn);
+        } else {
+            return -1;
+        }
+    }
+
+    function getAuthorId($name) {
+        $name = $this->conn->real_escape_string($name);
+        $query = "SELECT authorid FROM authors
+                  WHERE name = '$name'";
+        $result = $this->conn->query($query);
+        if ($result->affected_rows > 0) {
+            return $result->fetch_object()->authorid;
+        } else {
+            return -1;
+        }
+    }
+
+    function addBook($title, $author, $ISBN, $pub_year, $available) {
+        $title = $this->conn->real_escape_string($title);
+        //$author = $this->conn->real_escape_string($author);
+        $ISBN = $this->conn->real_escape_string($ISBN);
+        $pub_year = $this->conn->real_escape_string($pub_year);
+        $available = $this->conn->real_escape_string($available);
+
+        $authorid = $this->getAuthorId($author);
+        if ($authorid == -1) { // Author does not allready exist
+            // Add author and get the new authorid.
+            $authorid = $this->addAuthor($author);
+        }
+
+        $query = "INSERT INTO books (authorid, title, ISBN, pub_year, available) VALUES
+        ('$authorid, $title', '$ISBN', $pub_year, '$available')";
+
+        $result = $this->conn->query($query);
+        if ($result->affected_rows > 0) {
+            return "Success. '$title' has now been added to the library database.";
+        } else {
+            return "Oops. We were not able to add '$title' to the library database. Please check to see if all fields
+            are entered correctly.' If the problem persists try again later or contact us via our support page.";
+        }
+    }
 }

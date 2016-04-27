@@ -12,10 +12,13 @@
 <div class="nav">
     <ul>
         <li>
-            <a href="/Oblig3itpe2410/View/books.php">Browse</a>
+            <a href="/Oblig3itpe2410/View/books.php">View all books</a>
         </li>
         <li>
-            <a href="/Oblig3itpe2410/View/edit.php">Add/Remove books</a>
+            <a href="/Oblig3itpe2410/View/addbook.php">Add book</a>
+        </li>
+        <li>
+            <a href="/Oblig3itpe2410/View/removebook.php">Remove book</a>
         </li>
         <li style="float:right"><a href="/Oblig3itpe2410/API/loggUt.php">Log out</a></li>
     </ul>

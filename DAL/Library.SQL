@@ -3,7 +3,7 @@ SET foreign_key_checks = 0;
 DROP TABLE IF EXISTS authors;
 CREATE TABLE IF NOT EXISTS authors (
 	authorid INT(11) NOT NULL AUTO_INCREMENT,
-	name VARCHAR(55) NOT NULL,
+	name VARCHAR(55) NOT NULL UNIQUE,
 	PRIMARY KEY (authorid)
 );
 
