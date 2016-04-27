@@ -4,13 +4,13 @@ $output ="";
 $books ="";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['delete'])) {
-        $books = $_POST['bookcbs'];
-        if (count($books) > 0) {
+        if (!empty($_POST['bookcbs'])){
+            $bookcbs = $_POST['bookcbs'];
             include_once '../DAL/DB.php';
 
             $db = new DB();
 
-            $output = $db->deleteBooks($books);
+            $output = $db->deleteBooks($bookcbs);
         } else {
             $output = "No book(s) selected.";
         }
