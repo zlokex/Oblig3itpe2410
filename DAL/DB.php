@@ -39,21 +39,7 @@ class DB {
                   ORDER BY b.bookid";
         $result = $this->conn->query($query);
 
-        if ($result->num_rows > 0) {
-            $output= "<table class='booksTable'>";
-            $output.= "<tr><th>Select</th><th>S.N</th><th>Book title</th><th>Author name</th><th>Published year</th><th>Available</th></tr>";
-
-            while ($row = $result->fetch_object()) {
-                $output.= "<tr><td><input type='checkbox' name='bookcbs[]' value='$row->bookid'></td>
-                      <td>$row->bookid</td><td>$row->title</td><td>$row->name</td>
-                      <td>$row->pub_year</td><td>$row->available</td></tr>";
-            }
-            $output.= "</table>";
-            return $output;
-        } else {
-            $output= "No results for library books";
-            return $output;
-        }
+        return $this->buildBooksTable($result);
     }
 
     function displayAllBooks() {
@@ -63,16 +49,21 @@ class DB {
                   ORDER BY b.bookid";
         $result = $this->conn->query($query);
 
+        return $this->buildBooksTable($result);
+    }
+
+    function buildBooksTable($result) {
         if ($result->num_rows > 0) {
             $output= "<table class='booksTable'>";
-            $output.= "<tr><th>Select</th><th>S.N</th><th>Book title</th><th>Author name</th><th>Published year</th><th>Available</th></tr>";
-
+            $output.= "<thead><tr><th>Select</th><th>S.N</th><th>Book title</th>
+                        <th>Author name</th><th>Published year</th><th>Available</th></tr></thead>";
+            $output.= "<tbody>";
             while ($row = $result->fetch_object()) {
                 $output.= "<tr><td><input type='checkbox' name='bookcbs[]' value='$row->bookid'></td>
                       <td>$row->bookid</td><td>$row->title</td><td>$row->name</td>
                       <td>$row->pub_year</td><td>$row->available</td></tr>";
             }
-            $output.= "</table>";
+            $output.= "</tbody></table>";
             return $output;
         } else {
             $output= "No results for library books";

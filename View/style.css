@@ -55,18 +55,31 @@ body {
 /* Table styling */
 table {
     border-collapse: collapse;
-    border: 1px solid black;
+    border: 1px solid lightgray;
     overflow-x:auto;
     background-color: #f4f7f8;
 }
 
+tbody tr:nth-child(2n) {
+    background-color: lightsteelblue;
+}
+
+tbody tr:hover {
+    background-color: #555555;
+    color: white;
+}
+
+th {
+    background-color: rgba(0, 0, 0, 0.76);
+    color: white;
+}
+
 td {
-    border: 1px solid black;
+    border-top: 1px solid honeydew;
 }
 
 th, td {
     padding: 5px 10px 5px 10px; /* top, right, bottom, left*/
-    border: 1px solid black;
 }
 
 /* Input form */
@@ -170,7 +183,7 @@ th, td {
 
 .search-wrapper {
     float: right;
-    margin-bottom: 2px;
+    margin-bottom: 5px;
 }
 
 .search-wrapper form {
@@ -210,9 +223,6 @@ div#header-img img{
     margin-top: -200px;
 }
 
-.booksTable {
-
-}
 
 #deleteButton {
     width: 15em;
@@ -222,4 +232,15 @@ div#header-img img{
     border:2px solid darkblue;
     background-color:darkblue;
     color:#fafafa;
+}
+
+.spanFormat {
+    display: inline-block;
+    padding-right: 5px;
+}
+
+/* "Hand" cursor when hovering submit and regualr input buttons*/
+input[type="submit"]:hover,
+input[type="button"]:hover {
+    cursor: pointer;
 }
