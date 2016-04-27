@@ -6,3 +6,10 @@ Få Reset DB knappen til å oppdaterere siden, framfor å åpne ny tab.
 
 Via JavaScript(uten JQuery) utvid books tabellen til å ha scrollbar eller pages når antall bøker/rader når en bestemt
 limit, f.eks 15 rader.
+
+Eventuell upgrade, Legge til mulighet for å update felter på valgte rader/bøker i books.php. htmlen kan kopieres fra addbook,
+med ny css for å passe stilen til books.php, samt litt ny php kode, nye mysqli queries.
+
+upgrade søkefunksjonen til å ignorere whitspaces foran og bak søkestringen.
+stor upgrade: legge til keywords, som f.eks AND og OR, samt books:navn_på_bok for å søke spesifikt på kun bøker, tilsvarende
+med de andre verdiene.

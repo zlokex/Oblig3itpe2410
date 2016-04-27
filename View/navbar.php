@@ -15,16 +15,21 @@
 </div>
 !-->
 <div class="header">
-<img src = "/Oblig3itpe2410/images/logo.png">
+<a href="/Oblig3itpe2410/index.php">
+    <img src = "/Oblig3itpe2410/images/logo.png">
+</a>
 </div>
 <div class="nav">
     <ul>
+        <li>
+            <a href="/Oblig3itpe2410/index.php">Home</a>
+        </li>
         <li>
             <a href="/Oblig3itpe2410/View/books.php">View all books</a>
         </li>
         <li>
             <a href="/Oblig3itpe2410/View/addbook.php">Add book</a>
         </li>
-        <li style="float:right"><a href="/Oblig3itpe2410/API/loggUt.php">Sign out</a></li>
+        <li style="float:right"><a href="http://www.1112.net/lastpage.html">Sign out</a></li>
     </ul>
 </div>

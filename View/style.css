@@ -234,6 +234,10 @@ div#header-img img{
     color:white;
 }
 
+#deleteButton:hover {
+    background-color:#555555;
+}
+
 .spanFormat {
     display: inline-block;
     padding-right: 5px;
