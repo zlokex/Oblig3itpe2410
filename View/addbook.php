@@ -1,36 +1,42 @@
 <?php
 include_once 'navbar.php';
-var_dump( $_POST );
 $titleErr = $authorErr = $ISBNErr = $yearErr = $availableErr = "";
 $title = $author = $ISBN = $year = $available = "";
+$ok = false;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $ok = true;
     if (empty($_REQUEST["title"])) {
         $titleErr = "Required field";
+        $ok = false;
     } else {
         $title = test_input($_POST["title"]);
     }
 
     if (empty($_POST["author"])) {
         $authorErr = "Required field";
+        $ok = false;
     } else {
         $author = test_input($_POST["author"]);
     }
 
     if (empty($_POST["ISBN"])) {
         $ISBNErr = "Required field";
+        $ok = false;
     } else {
         $ISBN = test_input($_POST["ISBN"]);
     }
 
     if (empty($_POST["pub_year"])) {
         $yearErr = "Required field";
+        $ok = false;
     } else {
-        $year = test_input($_POST["year"]);
+        $year = test_input($_POST["pub_year"]);
     }
 
     if (empty($_POST["available"])) {
         $availableErr = "Required field";
+        $ok = false;
     } else {
         $available = test_input($_POST["available"]);
     }
@@ -46,7 +52,7 @@ function test_input($data) {
 
 <div class="form-addbook">
     <h1>Add a new book to the library</h1>
-    <form name = "form1" action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
+    <form name = "form1" action="<?php echo $_SERVER['PHP_SELF'];?>" method="post" enctype="multipart/form-data">
         <label for="title">Book title:</label>
         <span class="error">* <?php echo $titleErr;?></span>
         <input type="text" name="title" id="title" placeholder="e.g. The Return of The King" value="<?php echo $title;?>"/>
@@ -79,8 +85,12 @@ function test_input($data) {
 </div>
 
 <?php
-include_once '../DAL/DB.php';
-$db = new DB();
+if ($ok) {
+    include_once '../DAL/DB.php';
+    $db = new DB();
+    echo $db->addBook($title, $author, $ISBN, $year, $available);
+}
+
 ?>
 </body>
 </html>
