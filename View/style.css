@@ -4,6 +4,18 @@ body {
     background: white; /*#ccc */
 }
 
+.main-wrapper {
+    width: 690px;
+    margin:0 auto;
+
+}
+
+.main-wrapper h1 {
+    text-align: center;
+}
+
+
+
 /* Naviagation bar */
 .nav ul {
     list-style: none;
@@ -43,17 +55,31 @@ body {
 /* Table styling */
 table {
     border-collapse: collapse;
-    border: 1px solid black;
+    border: 1px solid lightgray;
     overflow-x:auto;
+    background-color: #f4f7f8;
+}
+
+tbody tr:nth-child(2n) {
+    background-color: lightsteelblue;
+}
+
+tbody tr:hover {
+    background-color: #555555;
+    color: white;
+}
+
+th {
+    background-color: rgba(0, 0, 0, 0.76);
+    color: white;
 }
 
 td {
-    border: 1px solid black;
+    border-top: 1px solid honeydew;
 }
 
 th, td {
     padding: 5px 10px 5px 10px; /* top, right, bottom, left*/
-    border: 1px solid black;
 }
 
 /* Input form */
@@ -69,7 +95,7 @@ th, td {
 }
 
 .form-addbook h1 {
-    background-color: darkblue;
+    background-color: #444444;
     padding: 20px 0;
     font-size: 140%;
     font-weight: 300;
@@ -113,9 +139,9 @@ th, td {
 .form-addbook textarea:focus,
 .form-addbook select:focus
 {
-    box-shadow: 0 0 5px #43D1AF;
+    box-shadow: 0 0 5px #888888;
     padding: 3%;
-    border: 1px solid #43D1AF;
+    border: 1px solid #444444;
 }
 
 .form-addbook input[type="submit"],
@@ -126,7 +152,7 @@ th, td {
     width: 100%;
     margin-top: 1em;
     padding: 3%;
-    background: darkblue;
+    background-color: #444444;
     border-bottom: 0;
     border-top-style: none;
     border-right-style: none;
@@ -135,10 +161,10 @@ th, td {
 }
 .form-addbook input[type="submit"]:hover,
 .form-addbook input[type="button"]:hover{
-    background-color: midnightblue;
+    background-color: #555555;
 }
 
-.form-addbook label{
+.form-addbook label {
     display: block;
     float: left;
     height: 14px;
@@ -146,35 +172,88 @@ th, td {
     color: #B9B9B9;
     font-size: 14px;
     overflow: hidden;
+}
 
 .error {
-    color: red;
+    font-size: 14px;
+    color: orangered;
+}
+
+/* Search Wrapper */
+
+.search-wrapper {
+    float: right;
+    margin-bottom: 5px;
+}
+
+.search-wrapper form {
+}
+
+.search-wrapper input[type="text"] {
+    width: 250px;
+    padding:8px 15px;
+    background-color:#f4f7f8;
+    border:1px solid #cccccc;
+}
+
+.search-wrapper input[type="submit"] {
+    width: 100px;
+    position:relative;
+    padding:6px 15px;
+    left:-8px;
+    border:2px solid #444444;
+    background-color:#444444;
+    color:#fafafa;
+}
+
+.search-wrapper input[type="button"]:hover {
+    background-color:#555555;
+    color:white;
+}
+
+/* Header image */
+div#header-img {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+}
+
+div#header-img img{
+    width: 100%;
+    margin-top: -200px;
 }
 
 
-/*
-form div + div {
-    margin-top: 1em;
+#deleteButton {
+    width: 15em;
+    position:relative;
+    padding:6px 15px;
+    margin-top: 5px;
+    border:2px solid #444444;
+    background-color:#444444;
+    color:white;
 }
 
-label {
+.spanFormat {
     display: inline-block;
-    width: 7em;
-    text-align: right;
+    padding-right: 5px;
 }
 
-.input-text input {
-    font: 1em sans-serif;
-
-    width: 200px;
-    border: 1px solid #999;
+/* "Hand" cursor when hovering submit and regualr input buttons*/
+input[type="submit"]:hover,
+input[type="button"]:hover {
+    cursor: pointer;
+    background-color:#555555;
 }
 
-.input-radio input {
-
+.header {
+    width: 100%;
+    background-color: black;
 }
 
-.submit-form {
-    margin-left: 7em;
+.header img {
+    height: 150px;
+    margin-top: 10px;
+    margin-left:10px;
+    margin-bottom:10px;
 }
-*/

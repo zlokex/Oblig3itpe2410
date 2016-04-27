@@ -23,6 +23,25 @@ class DB {
         }
     }
 
+    function displayBooks($filter) {
+        // Prevent injections:
+        $filter = $this->conn->real_escape_string($filter);
+        // Build query:
+        $query = "SELECT b.bookid, b.title, a.name, b.pub_year, b.available 
+                  FROM books b, authors a 
+                  WHERE (a.authorid = b.authorid)
+                  AND (b.bookid LIKE '%$filter%'
+                  OR b.title LIKE '%$filter%'
+                  OR b.ISBN LIKE '%$filter%'
+                  OR b.pub_year LIKE '%$filter%'
+                  OR b.available LIKE '%$filter%'
+                  OR a.name LIKE '%$filter%')
+                  ORDER BY b.bookid";
+        $result = $this->conn->query($query);
+
+        return $this->buildBooksTable($result);
+    }
+
     function displayAllBooks() {
         $query = "SELECT b.bookid, b.title, a.name, b.pub_year, b.available 
                   FROM books b, authors a 
@@ -30,17 +49,39 @@ class DB {
                   ORDER BY b.bookid";
         $result = $this->conn->query($query);
 
-        if ($result->num_rows > 0) {
-            echo "<table id='booksTable'>";
-            echo "<tr><th>S.N</th><th>Book title</th><th>Author name</th><th>Published year</th><th>Available</th>";
+        return $this->buildBooksTable($result);
+    }
 
+    function buildBooksTable($result) {
+        if ($result->num_rows > 0) {
+            $output= "<table class='booksTable'>";
+            $output.= "<thead><tr><th>Select</th><th>S.N</th><th>Book title</th>
+                        <th>Author name</th><th>Published year</th><th>Available</th></tr></thead>";
+            $output.= "<tbody>";
             while ($row = $result->fetch_object()) {
-                echo "<tr><td>$row->bookid</td><td>$row->title</td><td>$row->name</td>
+                $output.= "<tr><td><input type='checkbox' name='bookcbs[]' value='$row->bookid'></td>
+                      <td>$row->bookid</td><td>$row->title</td><td>$row->name</td>
                       <td>$row->pub_year</td><td>$row->available</td></tr>";
             }
-            echo "</table>";
+            $output.= "</tbody></table>";
+            return $output;
         } else {
-            echo "No results for library books";
+            $output= "No results for library books";
+            return $output;
+        }
+    }
+
+    function deleteBooks($books) {
+        $query = "DELETE FROM books WHERE bookid IN ($books[0]";
+        for ($i = 1; $i < count($books); $i++) {
+            $query.=",$books[$i]";
+        }
+        $query.=")";
+        $result = $this->conn->query($query);
+        if (mysqli_affected_rows($this->conn) > 0) {
+            return "Book(s) have been succesfully deleted.";
+        } else {
+            return "Ooops. We had problems handling your delete request. Please try again later or contact us through our support page.";
         }
     }
 
@@ -49,7 +90,7 @@ class DB {
         $query = "INSERT INTO authors(name) VALUES ('$name')";
         $result = $this->conn->query($query);
         if (mysqli_affected_rows($this->conn) > 0) {
-            return mysqli_insert_id($this->conn);
+            return mysqli_insert_id($this->conn); // Return last inserted id
         } else {
             return -1;
         }
