@@ -78,8 +78,8 @@ function test_input($data) {
             <input type="radio" name="available" value="Yes" checked/>Yes
             <input type="radio" name="available" value="No"/>No
             <span class="error">* <?php echo $availableErr;?></span>
-
         </div>
+        
         <input type="submit" value="Add book" name="submit"/>
     </form>
 </div>

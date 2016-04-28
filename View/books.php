@@ -37,6 +37,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="submit" name="searchButton" value="Filter">
     </form>
 </div>
+    <span class="spanFormat">
+    <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
 <?php
 include_once '../DAL/DB.php';
 if ($books == "") {
@@ -48,15 +50,14 @@ if ($books == "") {
     echo $books;
 }
 ?>
-<span class="spanFormat">
-    <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
+
     <input id="deleteButton" type="submit" name="delete" value="Delete selected book(s)">
     </form>
 </span>
 
 <span class="spanFormat">
     <form action="../DAL/initDB.php" target="_blank">
-    <input type="submit" id="deleteButton" value="Reset books to default">
+    <input type="submit" id="deleteButton" value="Reset database to default">
     </form>
 </span>
 

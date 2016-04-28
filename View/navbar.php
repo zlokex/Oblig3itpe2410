@@ -19,16 +19,33 @@
     <img src = "/Oblig3itpe2410/images/logo.png">
 </a>
 </div>
+<div class="server-info">
+    Load balancer address: <?php echo $_SERVER['SERVER_ADDR']?>
+    <br> Web server address:
+    <br> Database server address:
+</div>
 <div class="nav">
     <ul>
         <li>
-            <a href="/Oblig3itpe2410/index.php">Home</a>
+            <a href="/Oblig3itpe2410/index.php" title="Homepage of the website">Home</a>
         </li>
         <li>
-            <a href="/Oblig3itpe2410/View/books.php">View all books</a>
+            <div class="dropdown">
+                <a href="" class="dropbtn">Library database</a>
+                <div class="dropdown-content">
+                    <a href="/Oblig3itpe2410/View/books.php" title="Browse and delete from all library books">Books</a>
+                    <a href="/Oblig3itpe2410/View/authors.php" title="Browse and delete from all authors">Authors</a>
+                </div>
+            </div>
         </li>
         <li>
-            <a href="/Oblig3itpe2410/View/addbook.php">Add book</a>
+            <div class="dropdown">
+                <a href="" class="dropbtn">Register content</a>
+                <div class="dropdown-content">
+                    <a href="/Oblig3itpe2410/View/addbook.php" title="Add a new book to the library">Add book</a>
+                    <a href="/Oblig3itpe2410/View/addauthor.php" title="Add a new author to the library">Add author</a>
+                </div>
+            </div>
         </li>
         <li style="float:right"><a href="http://www.1112.net/lastpage.html">Sign out</a></li>
     </ul>

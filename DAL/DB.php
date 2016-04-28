@@ -72,14 +72,14 @@ class DB {
 
     /**
      * Helper method that returns a formatted html table with data from a
-     * mysqli->query() result.
+     * mysqli->query() books result.
      *
      * @param $result from a mysqli->query()
      * @return string with formatted html table tags and data
      */
     private function buildBooksTable($result) {
         if ($result->num_rows > 0) {
-            $output= "<table class='booksTable'>";
+            $output= "<table class='booksTable' width='690px' style='text-align:center'>";
             $output.= "<thead><tr><th>Select</th><th>S.N</th><th>Book title</th>
                         <th>Author name</th><th>Published year</th><th>Available</th></tr></thead>";
             $output.= "<tbody>";
@@ -120,6 +120,119 @@ class DB {
             return "No books are selected.";
         }
     }
+
+    /**
+     * Create a formatted table containing all authors in the database.
+     *
+     * @return string with formatted html table tags and data
+     */
+    function displayAllAuthors() {
+        $query = "SELECT a.authorid, a.name, 
+                  COUNT(b.authorid) AS bookcount
+                  FROM authors AS a
+                      LEFT JOIN books AS b
+                       ON a.authorid = b.authorid
+                  GROUP BY a.authorid";
+        $result = $this->conn->query($query);
+
+        return $this->buildAuthorsTable($result);
+    }
+
+    /**
+     * Create a formatted table with authors matching the provided filter.
+     *
+     * @param $filter string to filter the SELECT query
+     * @return string with formatted html table tags and data
+     */
+    function displayAuthors($filter) {
+        // Prevent injections:
+        $filter = $this->conn->real_escape_string($filter);
+        // Build query:
+        $query = "SELECT a.authorid, a.name, 
+                  COUNT(b.authorid) AS bookcount
+                  FROM authors AS a
+                      LEFT JOIN books AS b
+                       ON a.authorid = b.authorid
+                       WHERE b.title LIKE '%$filter%'
+                       OR b.ISBN = '%$filter%'
+                       OR a.authorid = '$filter'
+                       OR a.name LIKE '%$filter%'
+                  GROUP BY b.authorid";
+
+        $result = $this->conn->query($query);
+
+        return $this->buildAuthorsTable($result);
+    }
+
+    /**
+     * Helper method that returns a formatted html table with data from a
+     * mysqli->query() authors result.
+     *
+     * @param $result from a mysqli->query()
+     * @return string with formatted html table tags and data
+     */
+    private function buildAuthorsTable($result) {
+        if ($result->num_rows > 0) {
+            $output= "<table class='booksTable' width='690px' style='text-align:center'>";
+            $output.= "<col style='width:10%'>
+                      <col style='width:10%'>
+                      <col style='width:55%'>
+                      <col style='width:25%'>";
+            $output.= "<thead><tr><th>Select</th><th>S.N</th><th>Author name</th>
+                        <th>Library books</th></tr></thead>";
+            $output.= "<tbody>";
+            while ($row = $result->fetch_object()) {
+                $output.= "<tr><td><input type='checkbox' name='authorscbs[]' value='$row->authorid'></td>
+                      <td>$row->authorid</td><td>$row->name</td><td>$row->bookcount</td></tr>";
+            }
+            $output.= "</tbody></table>";
+            return $output;
+        } else {
+            $output= "No results for authors";
+            return $output;
+        }
+    }
+    
+    /**
+     * Deletes one or more rows/authors in in the authors table.
+     *
+     * @param $authors array containing authors.authorid of the authors that are to be deleted.
+     * @return string notifying the success of the query.
+     */
+    function deleteAuthors($authors)
+    {
+        if (count($authors) > 0) {
+            $query = "DELETE FROM authors WHERE authorid IN ($authors[0]";
+            for ($i = 1; $i < count($authors); $i++) {
+                $query .= ",$authors[$i]";
+            }
+            $query .= ")";
+            $result = $this->conn->query($query);
+            if (mysqli_affected_rows($this->conn) > 0) {
+                return "Authors(s) have been succesfully deleted.";
+            } else {
+                return "Ooops. We had problems handling your delete request. Please try again later or contact us through our support page.";
+            }
+        } else {
+            return "No authors are selected.";
+        }
+    }
+
+    /**
+     * Returns number of books the author matching the authorid has in the books table.
+     *
+     * @param $authorid
+     * @return mixed
+     */
+    function getAuthorBookCount($authorid) {
+        $query = "SELECT COUNT(*) AS bookcount
+                  FROM books 
+                  WHERE authorid = $authorid";
+        $result = $this->conn->query($query);
+        return $result->fetch_object()->bookcount;
+
+    }
+
 
     /**
      * Attempts to create a new author to the authors table. Each authors.name needs
