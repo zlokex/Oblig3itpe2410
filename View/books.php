@@ -51,16 +51,17 @@ if ($books == "") {
 }
 ?>
 
-    <input id="deleteButton" type="submit" name="delete" value="Delete selected book(s)">
+        <input id="deleteButton" type="submit" name="delete" value="Delete selected book(s)">
+        <button id="deleteButton" formaction="../DAL/initDB.php" target="_blank">Reset database to default</button>
     </form>
 </span>
-
+<!--    
 <span class="spanFormat">
     <form action="../DAL/initDB.php" target="_blank">
     <input type="submit" id="deleteButton" value="Reset database to default">
     </form>
 </span>
-
+-->
 <?php
 echo "<br>".$output;
 ?>

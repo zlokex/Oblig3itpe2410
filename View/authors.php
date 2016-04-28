@@ -64,17 +64,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ?>
             <span class="spanFormat">
                 <input id="deleteButton" type="submit" name="delete" value="Delete selected author(s)">
+                <button id="deleteButton" formaction="../DAL/initDB.php" target="_blank">Reset database to default</button>
             </span>
         </form>
 
 
-
+<!--
     <form action="../DAL/initDB.php" target="_blank">
         <span class="spanFormat">
-        <input type="submit" id="deleteButton" value="Reset database to default">
-            </span>
+            <input type="submit" id="deleteButton" value="Reset database to default">
+        </span>
     </form>
-
+-->
 
     <?php
     echo "<br>".$output;
