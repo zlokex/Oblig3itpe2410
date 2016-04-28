@@ -28,7 +28,7 @@ else
 }
 $db->close();
 if ($OK) {
-    echo "Database has been succesfully reset.";
+    echo "Database has been succesfully reset. Refresh your database page to get the updated results.";
 } else {
     echo "Database failed to reset.";
 }

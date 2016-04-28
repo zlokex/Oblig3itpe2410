@@ -27,6 +27,7 @@ body {
 }
 
 .nav li {
+    background-color: #444444;
     font-family: 'Oswald', sans-serif;
     font-size: 1.2em;
     line-height: 40px;
@@ -35,6 +36,7 @@ body {
 }
 
 .nav a {
+    background-color: #444444;
     text-decoration: none;
     color: #fff;
     text-align: center;
@@ -52,6 +54,41 @@ body {
     cursor: default
 }
 
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    width: inherit;
+    background-color: #444444;
+    min-width: 160px;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    background-color: #888888;
+    transition: .3s background-color;
+}
+
+
+
+.table1 {
+    position: relative;
+    display: inline-block;
+}
+
 /* Table styling */
 table {
     border-collapse: collapse;
@@ -61,7 +98,7 @@ table {
 }
 
 tbody tr:nth-child(2n) {
-    background-color: lightsteelblue;
+    background-color: silver;
 }
 
 tbody tr:hover {
@@ -195,6 +232,9 @@ th, td {
     background-color:#f4f7f8;
     border:1px solid #cccccc;
 }
+.search-wrapper input[type="text"]:focus {
+    border: 0;
+}
 
 .search-wrapper input[type="submit"] {
     width: 100px;
@@ -234,6 +274,10 @@ div#header-img img{
     color:white;
 }
 
+#deleteButton:hover {
+    background-color:#555555;
+}
+
 .spanFormat {
     display: inline-block;
     padding-right: 5px;
@@ -256,4 +300,11 @@ input[type="button"]:hover {
     margin-top: 10px;
     margin-left:10px;
     margin-bottom:10px;
+}
+
+.server-info {
+    color: white;
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }
