@@ -315,4 +315,16 @@ class DB {
             are entered correctly. If the problem persists try again later or contact us via our support page.";
         }
     }
+<<<<<<< HEAD
+
+    function getServerIp() {
+        $query = "SHOW VARIABLES WHERE Variable_name = 'hostname'";
+        $result = $this->conn->query($query);
+        $row = $this->conn->fetch_assoc($result);
+        return $row['hostname'];
+
+    }
 }
+=======
+}
+>>>>>>> 31bd6110c9bd57c437684e2ee5d27652aa046b4f

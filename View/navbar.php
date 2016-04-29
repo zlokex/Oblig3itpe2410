@@ -20,9 +20,9 @@
 </a>
 </div>
 <div class="server-info">
-    Load balancer address: <?php echo $_SERVER['SERVER_ADDR']?>
-    <br> Web server address:
+    Web server address: <?php echo $_SERVER['SERVER_ADDR']?>
     <br> Database server address:
+
 </div>
 <div class="nav">
     <ul>
