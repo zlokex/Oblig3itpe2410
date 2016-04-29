@@ -1,21 +1,23 @@
 {
-   "libraryDB": {
-       "master": {
-           "master_0": {
-               "host": "10.2.38.7",
-               "port": "3306",
-           }
-       },
-       "slave": {
-           "slave_0": {
-               "host": "10.2.38.9",
-               "port": "3306"
-           }
+    "libraryDB": {
+        "master": {
+            "master_0": {
+                "host": "10.2.38.7",
+                "port": "3306"
+            }
+        },
+        "slave": {
+            "slave_0": {
+                "host": "10.2.38.11",
+                "port": "3306"
+            },
             "slave_1": {
-               "host": "10.2.38.11",
-               "port": "3306"
-           }
-       }        
-        "failover": {"strategy": "master" }
-   }
+                "host": "10.2.38.9",
+                "port": "3306"
+            }
+        },
+	"failover": {
+             "strategy": "master"
+        }
+    }
 }
