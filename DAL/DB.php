@@ -1,6 +1,7 @@
 <?php
 
-class DB {
+class DB
+{
 
     // Database login fields:
     private $servername = "10.2.38.7";
@@ -13,16 +14,18 @@ class DB {
     /**
      * DB constructor.
      */
-    function __construct() {
+    function __construct()
+    {
         $this->connect();
     }
 
     /**
      * Creates a connection to the database.
      */
-    function connect() {
+    function connect()
+    {
         // Create connection
-        $this->conn=new mysqli($this->servername, $this->username, $this->password, $this->dbname);
+        $this->conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
         $this->conn->set_charset("utf8");
         // Check connection
         if ($this->conn->connect_error) {
@@ -36,7 +39,8 @@ class DB {
      * @param $filter string to filter the SELECT query
      * @return string with formatted html table tags and data
      */
-    function displayBooks($filter) {
+    function displayBooks($filter)
+    {
         // Prevent injections:
         $filter = $this->conn->real_escape_string($filter);
         // Build query:
@@ -60,7 +64,8 @@ class DB {
      *
      * @return string with formatted html table tags and data
      */
-    function displayAllBooks() {
+    function displayAllBooks()
+    {
         $query = "SELECT b.bookid, b.title, a.name, b.pub_year, b.available 
                   FROM books b, authors a 
                   WHERE a.authorid = b.authorid
@@ -77,21 +82,22 @@ class DB {
      * @param $result from a mysqli->query()
      * @return string with formatted html table tags and data
      */
-    private function buildBooksTable($result) {
+    private function buildBooksTable($result)
+    {
         if ($result->num_rows > 0) {
-            $output= "<table class='booksTable' width='690px' style='text-align:center'>";
-            $output.= "<thead><tr><th>Select</th><th>S.N</th><th>Book title</th>
+            $output = "<table class='booksTable' width='690px' style='text-align:center'>";
+            $output .= "<thead><tr><th>Select</th><th>S.N</th><th>Book title</th>
                         <th>Author name</th><th>Published year</th><th>Available</th></tr></thead>";
-            $output.= "<tbody>";
+            $output .= "<tbody>";
             while ($row = $result->fetch_object()) {
-                $output.= "<tr><td><input type='checkbox' name='bookcbs[]' value='$row->bookid'></td>
+                $output .= "<tr><td><input type='checkbox' name='bookcbs[]' value='$row->bookid'></td>
                       <td>$row->bookid</td><td>$row->title</td><td>$row->name</td>
                       <td>$row->pub_year</td><td>$row->available</td></tr>";
             }
-            $output.= "</tbody></table>";
+            $output .= "</tbody></table>";
             return $output;
         } else {
-            $output= "No results for library books";
+            $output = "No results for library books";
             return $output;
         }
     }
@@ -126,7 +132,8 @@ class DB {
      *
      * @return string with formatted html table tags and data
      */
-    function displayAllAuthors() {
+    function displayAllAuthors()
+    {
         $query = "SELECT a.authorid, a.name, 
                   COUNT(b.authorid) AS bookcount
                   FROM authors AS a
@@ -144,7 +151,8 @@ class DB {
      * @param $filter string to filter the SELECT query
      * @return string with formatted html table tags and data
      */
-    function displayAuthors($filter) {
+    function displayAuthors($filter)
+    {
         // Prevent injections:
         $filter = $this->conn->real_escape_string($filter);
         // Build query:
@@ -171,28 +179,29 @@ class DB {
      * @param $result from a mysqli->query()
      * @return string with formatted html table tags and data
      */
-    private function buildAuthorsTable($result) {
+    private function buildAuthorsTable($result)
+    {
         if ($result->num_rows > 0) {
-            $output= "<table class='booksTable' width='690px' style='text-align:center'>";
-            $output.= "<col style='width:10%'>
+            $output = "<table class='booksTable' width='690px' style='text-align:center'>";
+            $output .= "<col style='width:10%'>
                       <col style='width:10%'>
                       <col style='width:55%'>
                       <col style='width:25%'>";
-            $output.= "<thead><tr><th>Select</th><th>S.N</th><th>Author name</th>
+            $output .= "<thead><tr><th>Select</th><th>S.N</th><th>Author name</th>
                         <th>Library books</th></tr></thead>";
-            $output.= "<tbody>";
+            $output .= "<tbody>";
             while ($row = $result->fetch_object()) {
-                $output.= "<tr><td><input type='checkbox' name='authorscbs[]' value='$row->authorid'></td>
+                $output .= "<tr><td><input type='checkbox' name='authorscbs[]' value='$row->authorid'></td>
                       <td>$row->authorid</td><td>$row->name</td><td>$row->bookcount</td></tr>";
             }
-            $output.= "</tbody></table>";
+            $output .= "</tbody></table>";
             return $output;
         } else {
-            $output= "No results for authors";
+            $output = "No results for authors";
             return $output;
         }
     }
-    
+
     /**
      * Deletes one or more rows/authors in in the authors table.
      *
@@ -224,7 +233,8 @@ class DB {
      * @param $authorid
      * @return mixed
      */
-    function getAuthorBookCount($authorid) {
+    function getAuthorBookCount($authorid)
+    {
         $query = "SELECT COUNT(*) AS bookcount
                   FROM books 
                   WHERE authorid = $authorid";
@@ -241,7 +251,8 @@ class DB {
      * @param $name full name of the author to be created
      * @return int|string the authorid of the newly created author. -1 if query was unsuccessful.
      */
-    function addAuthor($name) {
+    function addAuthor($name)
+    {
         $name = $this->conn->real_escape_string($name);
         $query = "INSERT INTO authors(name) VALUES ('$name')";
         $result = $this->conn->query($query);
@@ -259,7 +270,8 @@ class DB {
      * @param $name full name of the author to find
      * @return int authorid of the author matching the given name. Returns -1 if author does not exist.
      */
-    function getAuthorId($name) {
+    function getAuthorId($name)
+    {
         $name = $this->conn->real_escape_string($name);
         $query = "SELECT authorid FROM authors
                   WHERE name = '$name'";
@@ -283,7 +295,8 @@ class DB {
      * @param $available Yes/No of the books current availability.
      * @return string determining the success of the function
      */
-    function addBook($title, $author, $ISBN, $pub_year, $available) {
+    function addBook($title, $author, $ISBN, $pub_year, $available)
+    {
         $title = $this->conn->real_escape_string($title);
         //$author = $this->conn->real_escape_string($author); // Atm redundant.
         $ISBN = $this->conn->real_escape_string($ISBN);
@@ -315,16 +328,4 @@ class DB {
             are entered correctly. If the problem persists try again later or contact us via our support page.";
         }
     }
-<<<<<<< HEAD
-
-    function getServerIp() {
-        $query = "SHOW VARIABLES WHERE Variable_name = 'hostname'";
-        $result = $this->conn->query($query);
-        $row = $this->conn->fetch_assoc($result);
-        return $row['hostname'];
-
-    }
 }
-=======
-}
->>>>>>> 31bd6110c9bd57c437684e2ee5d27652aa046b4f
