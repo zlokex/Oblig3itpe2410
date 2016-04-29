@@ -3,7 +3,7 @@
 class DB {
 
     // Database login fields:
-    private $servername = "localhost";
+    private $servername = "10.2.38.7";
     private $username = "root";
     private $password = "";
     private $dbname = "library";
@@ -315,6 +315,7 @@ class DB {
             are entered correctly. If the problem persists try again later or contact us via our support page.";
         }
     }
+<<<<<<< HEAD
 
     function getServerIp() {
         $query = "SHOW VARIABLES WHERE Variable_name = 'hostname'";
@@ -324,3 +325,6 @@ class DB {
 
     }
 }
+=======
+}
+>>>>>>> 31bd6110c9bd57c437684e2ee5d27652aa046b4f
