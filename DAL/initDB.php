@@ -1,6 +1,6 @@
 <?php
 $OK = true;
-$db = new mysqli("localhost", "root","","library");
+$db = new mysqli("10.2.38.7", "root","","library");
 if($db->connect_error)
 {
     $OK=false;
