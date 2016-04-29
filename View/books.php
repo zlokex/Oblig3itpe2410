@@ -2,6 +2,7 @@
 include_once 'navbar.php';
 $output ="";
 $books ="";
+$server_id ="";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['delete'])) {
         if (!empty($_POST['bookcbs'])){
@@ -9,6 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             include_once '../DAL/DB.php';
 
             $db = new DB();
+            $server_id = $db->getServerId();
 
             $output = $db->deleteBooks($bookcbs);
         } else {
@@ -18,6 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['searchButton'])) {
         include_once '../DAL/DB.php';
         $db = new DB();
+        $server_id = $db->getServerId();
         if (!empty($_POST['searchText'])) {
             $filter = $_POST['searchText'];
             $books = $db->displayBooks($filter);
@@ -45,10 +48,11 @@ if ($books == "") {
     $db = new DB();
 
     $books = $db->displayAllBooks();
-    echo $books;
-} else {
-    echo $books;
+    $server_id = $db->getServerId();
 }
+echo $books;
+echo "<br>".$server_id;
+
 ?>
 
         <input id="deleteButton" type="submit" name="delete" value="Delete selected book(s)">

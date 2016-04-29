@@ -328,4 +328,11 @@ class DB
             are entered correctly. If the problem persists try again later or contact us via our support page.";
         }
     }
+
+    function getServerId() {
+        $query = "SELECT @@server_id";
+        $result = $this->conn->query($query);
+        $row = $this->conn->fetch_assoc($result);
+        return $row["server_id"];
+    }
 }

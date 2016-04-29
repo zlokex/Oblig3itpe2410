@@ -21,7 +21,7 @@
 </div>
 <div class="server-info">
     Web server address: <?php echo $_SERVER['SERVER_ADDR']?>
-    <br> Database server address:
+    <br> Database server address: 
 
 </div>
 <div class="nav">
