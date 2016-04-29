@@ -3,7 +3,7 @@
 class DB {
 
     // Database login fields:
-    private $servername = "localhost";
+    private $servername = "10.2.38.7";
     private $username = "root";
     private $password = "";
     private $dbname = "library";
