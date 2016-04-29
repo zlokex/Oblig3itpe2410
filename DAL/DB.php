@@ -4,7 +4,7 @@ class DB
 {
 
     // Database login fields:
-    private $servername = "10.2.38.7";
+    private $servername = "libraryDB";
     private $username = "root";
     private $password = "";
     private $dbname = "library";
