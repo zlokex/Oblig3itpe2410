@@ -10,9 +10,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             include_once '../DAL/DB.php';
 
             $db = new DB();
-            $server_id = $db->getServerId();
 
             $output = $db->deleteBooks($bookcbs);
+            $server_id = $db->getServerId();
         } else {
             $output = "No book(s) selected.";
         }
@@ -20,12 +20,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['searchButton'])) {
         include_once '../DAL/DB.php';
         $db = new DB();
-        $server_id = $db->getServerId();
         if (!empty($_POST['searchText'])) {
             $filter = $_POST['searchText'];
             $books = $db->displayBooks($filter);
+            $server_id = $db->getServerId();
         } else {
             $books = $db->displayAllBooks();
+            $server_id = $db->getServerId();
         }
     }
 }
