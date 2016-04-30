@@ -332,7 +332,7 @@ class DB
     function getServerId() {
         $query = "SELECT @@server_id";
         $result = $this->conn->query($query);
-        $row = $this->conn->fetch_assoc($result);
-        return $row["server_id"];
+	$row = $result->fetch_assoc();
+        return $row["@@server_id"];
     }
 }
