@@ -15,3 +15,7 @@ include_once 'View/navbar.php';
     </ul>
 </par>
 </div>
+<?php
+$server_id ="";
+include_once 'serverinfo.php';
+?>

@@ -330,7 +330,7 @@ class DB
     }
 
     function getServerId() {
-        $query = sprintf("SELECT @@server_id", MYSQLND_MS_LAST_USED_SWITCH); // Run on last used server
+        $query = sprintf("SELECT @@server_id", MYSQLND_MS_MASTER_SWITCH); // Run on last used server
         $result = $this->conn->query($query);
 	$row = $result->fetch_assoc();
         return $row["@@server_id"];

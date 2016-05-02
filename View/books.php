@@ -53,7 +53,6 @@ if ($books == "") {
 }
 echo $books;
 echo "<br>".$server_id;
-
 ?>
 
         <input id="deleteButton" type="submit" name="delete" value="Delete selected book(s)">
