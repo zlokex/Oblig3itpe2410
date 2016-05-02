@@ -10,7 +10,6 @@ The application is designed as a piece in a larger project of designing a 3-tier
 For the web application only PHP, HTML and CSS are used. No third party frameworks. For the database MySQL is used.
 
 ## Install
-###Software
 ####Minimum
 ####Linux
 #####Web server
@@ -24,16 +23,5 @@ git clone https://github.com/zlokex/Oblig3itpe2410.git
 #####Database server
 Install MySQL server
 apt-get install mysql-server
-
-####Reccomended
-####Linux
-#####Web servers
-Create 4 Virtual machines with Ubuntu Server 14.04 OS
-For each machine install Apache2, php5 php5-mysqlnd
-apt-get install apache2 php5 libapache2-mod-php5 php5-mysqlnd
-Install git
-apt-get install git
-Download this repository to /var/www/http/
-git clone https://github.com/zlokex/Oblig3itpe2410.git
-
-#####Database servers
+Create a new database with the name "library".
+To populate the database with initial tables and values, run Oblig3itpe2410/DAL/initDB.php
