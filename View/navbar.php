@@ -1,3 +1,12 @@
+<?php
+/**
+ * navbar.php
+ *
+ * Needs to be loaded in the beggining of each webpage to display the navigation bar as well as initialising and
+ * creating a database connection variable.
+ */
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,17 +20,11 @@
 <body>
 
 <?php
+// Create DB connection
 require $_SERVER['DOCUMENT_ROOT'] . "/Oblig3itpe2410/DAL/DB.php";
-
 $db = new DB();
-//$server_id = $db->getServerId();
 ?>
 
-<!--
-<div id =header-img>
-    <img src="http://thumbs.dreamstime.com/z/e-book-library-concept-laptop-computer-books-57096626.jpg"/>
-</div>
-!-->
 <div class="header">
 <a href="/Oblig3itpe2410/index.php">
     <img src = "/Oblig3itpe2410/images/logo.png">

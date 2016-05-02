@@ -5,8 +5,6 @@ $authors ="";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['delete'])) {
         if (!empty($_POST['authorscbs'])){
-            //include_once '../DAL/DB.php';
-            //$db = new DB();
 
             $authorscbs = $_POST['authorscbs'];
             $ok = true;
@@ -28,8 +26,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
     if (isset($_POST['searchButton'])) {
-        //include_once '../DAL/DB.php';
-        //$db = new DB();
         if (!empty($_POST['searchText'])) {
             $filter = $_POST['searchText'];
             $authors = $db->displayAuthors($filter);
@@ -39,7 +35,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
-
 
 <div class="main-wrapper">
     <h1>List of all authors in the database</h1>
@@ -52,10 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
         <?php
-        //include_once '../DAL/DB.php';
         if ($authors == "") {
-            //$db = new DB();
-    
             $authors = $db->displayAllAuthors();
             echo $authors;
         } else {
@@ -67,20 +59,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <button id="deleteButton" formaction="../DAL/initDB.php" target="_blank">Reset database to default</button>
             </span>
         </form>
-
-
-<!--
-    <form action="../DAL/initDB.php" target="_blank">
-        <span class="spanFormat">
-            <input type="submit" id="deleteButton" value="Reset database to default">
-        </span>
-    </form>
--->
-
     <?php
     echo "<br>".$output;
-    include_once 'serverinfo.php';
     ?>
 </div>
+
+<?php
+include_once 'serverinfo.php';
+?>
 
 

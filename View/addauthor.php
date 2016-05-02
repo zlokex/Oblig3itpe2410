@@ -35,8 +35,6 @@ function test_input($data) {
 
 <?php
 if ($ok) {
-    //include_once '../DAL/DB.php';
-    //$db = new DB();
     $exists = $db->getAuthorId($author);
     if ($exists != -1) {
         echo "$author allready exists in the database.";

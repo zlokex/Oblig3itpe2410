@@ -7,31 +7,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['delete'])) {
         if (!empty($_POST['bookcbs'])){
             $bookcbs = $_POST['bookcbs'];
-            //include_once '../DAL/DB.php';
-
-            // $db = new DB();
-
             $output = $db->deleteBooks($bookcbs);
-            //$server_id = $db->getServerId();
         } else {
             $output = "No book(s) selected.";
         }
     }
     if (isset($_POST['searchButton'])) {
-        //include_once '../DAL/DB.php';
-        // $db = new DB();
         if (!empty($_POST['searchText'])) {
             $filter = $_POST['searchText'];
             $books = $db->displayBooks($filter);
-            //$server_id = $db->getServerId();
         } else {
             $books = $db->displayAllBooks();
-            //$server_id = $db->getServerId();
         }
     }
 }
 ?>
-
 
 <div class="main-wrapper">
 <h1>List of all library books</h1>
@@ -46,10 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php
 include_once '../DAL/DB.php';
 if ($books == "") {
-    // $db = new DB();
-
     $books = $db->displayAllBooks();
-    //$server_id = $db->getServerId();
 }
 echo $books;
 ?>
@@ -58,17 +45,11 @@ echo $books;
         <button id="deleteButton" formaction="../DAL/initDB.php" target="_blank">Reset database to default</button>
     </form>
 </span>
-<!--    
-<span class="spanFormat">
-    <form action="../DAL/initDB.php" target="_blank">
-    <input type="submit" id="deleteButton" value="Reset database to default">
-    </form>
-</span>
--->
+</div>
+
 <?php
 echo "<br>".$output;
 include_once 'serverinfo.php';
 ?>
-</div>
 
 
