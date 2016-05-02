@@ -49,7 +49,7 @@ function test_input($data) {
 }
 
 ?>
-
+<div class="main-wrapper">
 <div class="form-addbook">
     <h1>Add a new book to the library</h1>
     <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post" enctype="multipart/form-data">
@@ -89,7 +89,7 @@ if ($ok) {
     echo $db->addBook($title, $author, $ISBN, $year, $available);
 }
 ?>
-
+</div>
 <?php
 include_once 'serverinfo.php';
 ?>

@@ -22,6 +22,7 @@ function test_input($data) {
 
 ?>
 
+<div class="main-wrapper">
 <div class="form-addbook">
     <h1>Add a new author the database</h1>
     <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post" enctype="multipart/form-data">
@@ -48,7 +49,7 @@ if ($ok) {
     }
 }
 ?>
-
+</div>
 <?php
 include_once 'serverinfo.php';
 ?>
