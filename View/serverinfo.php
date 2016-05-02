@@ -48,6 +48,9 @@ function databaseInfo($server_id) {
     <?php echo webserverInfo($_SERVER['SERVER_ADDR']);?>
     <br>
     <br>
-    <?php $server_id = $db->getServerId();?>
+    <?php 
+    $server_id = "";
+    $server_id = $db->getServerId();
+    ?>
     <?php echo databaseInfo($server_id);?>
 </div>
