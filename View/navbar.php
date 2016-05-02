@@ -12,6 +12,7 @@
 
 <?php
 require $_SERVER['DOCUMENT_ROOT'] . "/Oblig3itpe2410/DAL/DB.php";
+
 $db = new DB();
 //$server_id = $db->getServerId();
 ?>
