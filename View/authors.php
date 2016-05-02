@@ -79,6 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <?php
     echo "<br>".$output;
+    include_once 'serverinfo.php';
     ?>
 </div>
 

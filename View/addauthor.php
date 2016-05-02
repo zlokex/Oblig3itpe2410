@@ -49,7 +49,10 @@ if ($ok) {
         }
     }
 }
+?>
 
+<?php
+include_once 'serverinfo.php';
 ?>
 </body>
 </html>

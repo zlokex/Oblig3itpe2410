@@ -69,6 +69,7 @@ echo "<br>".$server_id;
 -->
 <?php
 echo "<br>".$output;
+include_once 'serverinfo.php';
 ?>
 </div>
 

@@ -90,7 +90,11 @@ if ($ok) {
     $db = new DB();
     echo $db->addBook($title, $author, $ISBN, $year, $available);
 }
-
 ?>
+
+<?php
+include_once 'serverinfo.php';
+?>
+
 </body>
 </html>

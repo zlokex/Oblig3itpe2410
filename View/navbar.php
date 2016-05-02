@@ -9,11 +9,13 @@
     <link rel="stylesheet" href="/Oblig3itpe2410/View/style.css">
 </head>
 <body>
+
 <?php
 require $_SERVER['DOCUMENT_ROOT'] . "/Oblig3itpe2410/DAL/DB.php";
 $db = new DB();
 $server_id = $db->getServerId();
 ?>
+
 <!--
 <div id =header-img>
     <img src="http://thumbs.dreamstime.com/z/e-book-library-concept-laptop-computer-books-57096626.jpg"/>
@@ -23,11 +25,6 @@ $server_id = $db->getServerId();
 <a href="/Oblig3itpe2410/index.php">
     <img src = "/Oblig3itpe2410/images/logo.png">
 </a>
-</div>
-<div class="server-info">
-    Web server address: <?php echo $_SERVER['SERVER_ADDR'];?>
-    <br> Database server-id: <?php echo $server_id;?>
-
 </div>
 <div class="nav">
     <ul>
