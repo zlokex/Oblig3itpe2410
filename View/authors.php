@@ -5,8 +5,8 @@ $authors ="";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['delete'])) {
         if (!empty($_POST['authorscbs'])){
-            include_once '../DAL/DB.php';
-            $db = new DB();
+            //include_once '../DAL/DB.php';
+            //$db = new DB();
 
             $authorscbs = $_POST['authorscbs'];
             $ok = true;
@@ -28,8 +28,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
     if (isset($_POST['searchButton'])) {
-        include_once '../DAL/DB.php';
-        $db = new DB();
+        //include_once '../DAL/DB.php';
+        //$db = new DB();
         if (!empty($_POST['searchText'])) {
             $filter = $_POST['searchText'];
             $authors = $db->displayAuthors($filter);
@@ -52,9 +52,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
         <?php
-        include_once '../DAL/DB.php';
+        //include_once '../DAL/DB.php';
         if ($authors == "") {
-            $db = new DB();
+            //$db = new DB();
     
             $authors = $db->displayAllAuthors();
             echo $authors;

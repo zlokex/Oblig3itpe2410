@@ -86,8 +86,8 @@ function test_input($data) {
 
 <?php
 if ($ok) {
-    include_once '../DAL/DB.php';
-    $db = new DB();
+    //include_once '../DAL/DB.php';
+    //$db = new DB();
     echo $db->addBook($title, $author, $ISBN, $year, $available);
 }
 ?>
