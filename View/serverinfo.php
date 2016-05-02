@@ -1,7 +1,7 @@
 <?php
 
 function webserverInfo($server_ip) {
-    $serverInfo = "Active web server: "."<br>";
+    $serverInfo = "Web server used: "."<br>";
     switch ($server_ip) {
         case "10.2.38.5":
             $serverInfo .= "Dats38-web-1"."<br>";
@@ -48,7 +48,7 @@ function databaseInfo($server_id) {
     <?php echo webserverInfo($_SERVER['SERVER_ADDR']);?>
     <br>
     <br>
-    <?php 
+    <?php
     $server_id = "";
     $server_id = $db->getServerId();
     ?>

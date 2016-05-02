@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // $db = new DB();
 
             $output = $db->deleteBooks($bookcbs);
-            $server_id = $db->getServerId();
+            //$server_id = $db->getServerId();
         } else {
             $output = "No book(s) selected.";
         }
@@ -23,10 +23,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (!empty($_POST['searchText'])) {
             $filter = $_POST['searchText'];
             $books = $db->displayBooks($filter);
-            $server_id = $db->getServerId();
+            //$server_id = $db->getServerId();
         } else {
             $books = $db->displayAllBooks();
-            $server_id = $db->getServerId();
+            //$server_id = $db->getServerId();
         }
     }
 }
