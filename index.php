@@ -17,5 +17,5 @@ include_once 'View/navbar.php';
 </div>
 <?php
 $server_id ="";
-include_once 'serverinfo.php';
+include_once 'View/serverinfo.php';
 ?>
