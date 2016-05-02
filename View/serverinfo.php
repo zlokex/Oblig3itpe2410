@@ -4,16 +4,16 @@ function webserverInfo($server_ip) {
     $serverInfo = "Active web server: "."<br>";
     switch ($server_ip) {
         case "10.2.38.5":
-            $serverInfo = "Dats38-web-1"."<br>";
+            $serverInfo .= "Dats38-web-1"."<br>";
             break;
         case "10.2.38.10":
-            $serverInfo = "Dats38-web-2"."<br>";
+            $serverInfo .= "Dats38-web-2"."<br>";
             break;
         case "10.2.38.6":
-            $serverInfo = "Dats38-web-3"."<br>";
+            $serverInfo .= "Dats38-web-3"."<br>";
             break;
         case "10.2.38.8":
-            $serverInfo = "Dats38-web-4"."<br>";
+            $serverInfo .= "Dats38-web-4"."<br>";
             break;
         default:
             break;
