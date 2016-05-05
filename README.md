@@ -25,3 +25,7 @@ Install MySQL server
 apt-get install mysql-server
 Create a new database with the name "library".
 To populate the database with initial tables and values, run Oblig3itpe2410/DAL/initDB.php
+
+#####Mysqlnd
+The webapplication uses mysqlnd_ms to distribute its db requests. In order for this to work on a new setup you must configure mysqlnd_ms.json to suit your setup with the databases needed. 
+Optionally you can configure DB.php to work towards "localhost" instead of "LibraryDB" as servername.
